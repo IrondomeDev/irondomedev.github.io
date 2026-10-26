@@ -1,0 +1,1 @@
+{"name":"irondome-node-signup-tutorial","version":"1.0.0","private":true,"type":"module","engines":{"node":">=22"},"scripts":{"test":"node --test","demo":"node demo.js"},"dependencies":{"@irondome-dev/sdk":"0.2.0"}}

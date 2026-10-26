@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IronDome open-source developer hub</title>
+  <meta name="description" content="Official IronDome SDK source, Mail Canon package guides, and a runnable server-side signup screening example.">
+  <link rel="canonical" href="https://irondomedev.github.io/">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#F76808">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+  <header>
+    <a class="brand" href="https://irondome.dev/" aria-label="IronDome product home"><span>IRONDOME</span><i aria-hidden="true"></i></a>
+    <nav aria-label="Main navigation">
+      <a href="#sdks">[ SDKs ]</a><a href="#mail-canon">[ MAIL CANON ]</a><a href="#examples">[ EXAMPLES ]</a><a href="https://irondome.dev/docs">[ DOCS ↗ ]</a><a href="https://github.com/IrondomeDev">[ GITHUB ↗ ]</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section aria-labelledby="intro-title" class="intro">
+      <p class="eyebrow">OPEN SOURCE / DEVELOPER RESOURCES</p>
+      <h1 id="intro-title"><span aria-hidden="true"># </span>Build with IronDome</h1>
+      <p>SDKs, email canonicalization packages, and runnable integration examples. Start from the source; keep your application’s authentication and verification in place.</p>
+      <p class="subtle">This is the open-source hub. Product documentation, API reference, and articles live at <a href="https://irondome.dev/">irondome.dev</a>.</p>
+    </section>
+    <section id="sdks" aria-labelledby="sdks-title">
+      <h2 id="sdks-title"><span aria-hidden="true">## </span>API SDKs</h2>
+      <p>Server-side clients for the IronDome disposable-email detection API. Keep your account key on your server and reuse one client.</p>
+      <div class="grid">
+        <article class="card"><p class="tag">JAVASCRIPT / TYPESCRIPT</p><h3>Node.js, Fetch &amp; Deno</h3><pre aria-label="Install JavaScript SDK"><code>npm install @irondome-dev/sdk@0.2.0</code></pre><a href="https://github.com/IrondomeDev/sdks/blob/main/javascript/README.md">JavaScript guide →</a></article>
+        <article class="card"><p class="tag">GO</p><h3>Go 1.23+</h3><pre aria-label="Install Go SDK"><code>go get github.com/IrondomeDev/sdks/go@v0.2.0</code></pre><a href="https://github.com/IrondomeDev/sdks/blob/main/go/README.md">Go guide →</a></article>
+        <article class="card"><p class="tag">RUST</p><h3>Rust SDK</h3><pre aria-label="Install Rust SDK"><code>cargo add irondome-sdk@0.2.0</code></pre><a href="https://github.com/IrondomeDev/sdks/blob/main/rust/README.md">Rust guide →</a></article>
+        <article class="card"><p class="tag">PYTHON</p><h3>Python 3.11+</h3><p>Install from source. PyPI publication is pending; follow the package’s current instructions.</p><a href="https://github.com/IrondomeDev/sdks/blob/main/python/README.md">Python source guide →</a></article>
+      </div>
+      <p><a href="https://github.com/IrondomeDev/sdks">SDK repository</a> · <a href="https://irondome.dev/docs/quickstart">API quickstart</a> · <a href="https://irondome.dev/docs/errors">Error reference</a></p>
+    </section>
+    <section id="mail-canon" aria-labelledby="canon-title">
+      <h2 id="canon-title"><span aria-hidden="true">## </span>Mail Canon</h2>
+      <div class="card wide">
+        <p class="tag">LOCAL EMAIL NORMALIZATION / NO API CALLS</p>
+        <h3>Provider-aware matching keys</h3>
+        <p>Normalize email addresses with implementations in JavaScript, Python, Rust, Go, Java, PHP, and C#. Package releases are independent; check the guide for your language and installed version.</p>
+        <p class="notice">Canonical equality is not proof of identity. Do not use it alone to authorize login, recovery, account linking, or account merging. Preserve the submitted address and verify mailbox ownership.</p>
+        <div class="links"><a href="https://github.com/IrondomeDev/mail-canon#packages">Package guides →</a><a href="https://github.com/IrondomeDev/mail-canon/blob/main/docs/BEHAVIOR.md">Behavior contract →</a><a href="https://github.com/IrondomeDev/mail-canon/releases">Published releases →</a></div>
+      </div>
+    </section>
+    <section id="examples" aria-labelledby="examples-title">
+      <h2 id="examples-title"><span aria-hidden="true">## </span>Run a signup example</h2>
+      <div class="card wide">
+        <p class="tag">NODE.JS 22+ / OFFLINE DEMO</p>
+        <h3>Screen before creating the account</h3>
+        <p>A small server-side screening integration with mock account creation and verification delivery. No API key, live requests, or real accounts are needed to run the demo and tests.</p>
+        <pre aria-label="Clone and run the signup example"><code>git clone https://github.com/IrondomeDev/irondomedev.github.io.git
+cd irondomedev.github.io/examples/node-signup
+npm ci --ignore-scripts
+npm test
+npm run demo</code></pre>
+        <p>Confirmed disposable results stop the mock signup. This example deliberately <strong>fails open</strong> on screening outages, quota exhaustion, and unusable responses: the existing auth flow continues without a classification. Disposable addresses may pass unchecked during failures.</p>
+        <p>Retain your existing validation, request limits, abuse controls, and ownership verification. Enforce screening at the actual user-creation boundary; a browser pre-check is bypassable. This is not a production authentication system.</p>
+        <div class="links"><a href="https://github.com/IrondomeDev/irondomedev.github.io/tree/main/examples/node-signup">Source, tests &amp; integration notes →</a><a href="https://irondome.dev/docs/guides/node">Node.js guide →</a></div>
+      </div>
+      <p>Using Supabase Auth? See the <a href="https://irondome.dev/docs/guides/supabase">native Before User Created hook guide</a> for enforcement before user creation.</p>
+    </section>
+    <section aria-labelledby="contribute-title">
+      <h2 id="contribute-title"><span aria-hidden="true">## </span>Work on the source</h2>
+      <p>Report SDK issues in the <a href="https://github.com/IrondomeDev/sdks/issues">SDK tracker</a>. For canonicalization changes, read the <a href="https://github.com/IrondomeDev/mail-canon/blob/main/CONTRIBUTING.md">Mail Canon contribution guide</a> and shared behavior contract first.</p>
+    </section>
+  </main>
+  <footer><span>© 2026 IronDome</span><a href="https://irondome.dev/docs">Product docs</a><a href="https://github.com/IrondomeDev/irondomedev.github.io">Hub source</a></footer>
+</div>
+</body>
+</html>
