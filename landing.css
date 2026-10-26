@@ -1,0 +1,117 @@
+/* Page-specific layout; all brand values come from theme.css. */
+.landing {
+  --content-max: 760px;
+  --page-top-gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  overflow-wrap: anywhere;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.features li::before {
+  content: "*";
+  color: var(--muted);
+  position: absolute;
+  left: 0;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.price-card { display: flex; flex-direction: column; }
+.price-details { flex: 1; }
+.price-details > .ui-button { margin-top: auto; }
+
+.price-card h3 {
+  margin: 0;
+  padding: var(--space-4);
+  border-bottom: var(--border-style);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height);
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+}
+
+.price {
+  color: var(--accent);
+}
+
+/* The homepage keeps its direct navigation at every screen size. */
+@media (max-width: 760px) {
+  .landing .site-header > .site-nav {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: space-between;
+    gap: 4px;
+    font-size: clamp(9px, 2.8vw, 12px);
+  }
+  .landing .site-nav > a { display: flex; align-items: center; min-height: 40px; }
+  .landing .site-nav > a:nth-child(4) { justify-self: end; }
+  .landing .site-nav > a:nth-child(5) { grid-column: 1; grid-row: 2; }
+  .landing .site-nav > a:nth-child(6) { grid-column: 4; grid-row: 2; justify-self: end; }
+  .landing .site-mobile-menu { display: none; }
+}
+
+@media (max-width: 640px) {
+  .pricing-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+
+/* Questions follow pricing and use the shared typography and border tokens. */
+.question-list {
+  border: var(--border-style);
+  background: var(--surface);
+}
+
+.question {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.question + .question {
+  border-top: var(--border-style);
+}
+
+.question h3 {
+  margin: 0;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height);
+}
+
+.question h3::before {
+  content: "### ";
+  color: var(--muted);
+}
+
+.question > summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; list-style: none; font-weight: var(--font-weight-heading); }
+.question > summary::-webkit-details-marker { display: none; }
+.question > summary::after { content: '+'; flex: 0 0 auto; color: var(--subtle); }
+.question[open] > summary::after { content: '\2212'; }
+.question > p { margin-top: var(--space-3); color: var(--subtle); }

@@ -1,0 +1,464 @@
+/* Iron Dome global theme. Source: guide_branding.txt.txt.
+   Typography increased from the guide's 12px base for app readability.
+   Use these tokens in page and component styles to keep the app consistent. */
+@font-face {
+  font-family: "Berkeley Mono Variable";
+  src: url("/assets/brand_font.01de769da5aa7849.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  --bg: #F7F7F8;
+  --surface: #FFFFFF;
+  --fg: #070707;
+  --muted: #8E8E95;
+  --border: #E8E8EA;
+  --dash: rgba(7, 7, 7, .20);
+  --hover: #EEEEEF;
+  --accent: #F76808;
+  --link-color: #F76808;
+  --link-hover: #F76808;
+  --on-link-hover: #FFFFFF;
+  --link-highlight-block: 3px;
+  --link-highlight-inline: 6px;
+  --subtle: #62626A;
+  --danger: #B42318;
+  --success: #16824B;
+  --warning: #B36A00;
+  --success-subtle: color-mix(in srgb, var(--success) 8%, var(--surface));
+  --danger-subtle: color-mix(in srgb, var(--danger) 8%, var(--surface));
+  --warning-subtle: color-mix(in srgb, var(--warning) 8%, var(--surface));
+  --selected-bg: #FFF0E6;
+  --selected-fg: #F76808;
+  --control-height: 44px;
+  --button-height: 32px;
+  --button-bg: var(--link-hover);
+  --button-fg: var(--on-link-hover);
+  --button-hover-bg: #DE5B07;
+  --font-size-small: 12px;
+  --line-height-small: 20px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 20px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 80px;
+
+  --page-x: 20px;
+  --page-x-desktop: 40px;
+  --content-max: 500px;
+  --page-padding: var(--page-x);
+
+  --font-family: "Berkeley Mono Variable", monospace;
+  --font-size: 14px;
+  --font-weight: 400;
+  --font-weight-heading: 700;
+  --line-height: 24px;
+  --line-height-nav: 22px;
+  --content-gap: var(--space-5);
+  --section-gap: var(--space-7);
+  --page-top-gap: var(--space-8);
+  --border-style: 1px dashed var(--dash);
+  --radius: 0px;
+  --shadow: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] { display: none !important; }
+.visually-hidden, .docs-announcement {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+}
+
+/* The shell owns page spacing; children can use .stack for a content gap. */
+#app {
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--page-padding));
+  margin-inline: auto;
+  padding: var(--page-top-gap) var(--page-padding) var(--section-gap);
+}
+
+h1,
+h2,
+p,
+pre {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height);
+}
+
+/* Heading text should omit the hashes; the theme supplies the brand markers. */
+h1::before {
+  content: "# ";
+  color: var(--muted);
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+h2::before {
+  content: "## ";
+  color: var(--muted);
+}
+
+li::marker {
+  color: var(--muted);
+}
+
+.sidebar-brand {
+  display: inline-flex; align-items: center;
+  width: fit-content; max-width: 100%; color: var(--fg);
+  min-height: 24px; font-family: var(--font-family, inherit); font-size: 17px;
+  font-weight: 700; line-height: 1; letter-spacing: .1em; text-indent: .1em;
+  text-decoration: none; white-space: nowrap;
+}
+.sidebar-brand > span { display: block; }
+.sidebar-brand:hover { background: transparent; color: var(--fg); text-decoration: none; }
+
+/* Shared wordmark colors for the header strip and sidebar branding. */
+.site-brand-name { color: #F5D90A; }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .site-brand-name {
+    background: linear-gradient(180deg, #F5D90A 0%, #F76808 50%, #F70909 100%);
+    background-clip: text; -webkit-background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+  }
+}
+
+nav {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height-nav);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+pre {
+  overflow-x: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Inline links use the brand highlight; navigation uses a neutral surface.
+   .ui-link explicitly opts a link into the inline style inside navigation. */
+:where(a):not(:where(nav a, aside a, [role="button"], .ui-button, .site-brand-word, .sidebar-brand, .bill-brand, .docs-skip)),
+.ui-link {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  /* Reserve the highlight in both states so hovering never moves the text. */
+  padding: var(--link-highlight-block) var(--link-highlight-inline);
+  margin: calc(0px - var(--link-highlight-block)) calc(0px - var(--link-highlight-inline));
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+:root a:not(:where(nav a, aside a, [role="button"], .ui-button, .site-brand-word, .sidebar-brand, .bill-brand, .docs-skip)),
+.ui-link {
+  color: var(--link-color);
+  text-decoration-color: var(--link-color);
+}
+
+:root a:hover:not(:where(nav a, aside a, [role="button"], .ui-button, .site-brand-word, .sidebar-brand, .bill-brand, .docs-skip)),
+.ui-link:hover {
+  background: var(--link-hover);
+  color: var(--on-link-hover);
+}
+
+:root a:hover:not(:where(nav a, aside a, [role="button"], .ui-button, .site-brand-word, .sidebar-brand, .bill-brand, .docs-skip)) code,
+.ui-link:hover code {
+  background: transparent;
+  color: inherit;
+}
+
+:where(nav a:hover, aside a:hover) { background: var(--hover); }
+:where(nav, aside) a[aria-current="page"] { color: var(--selected-fg); background: var(--selected-bg); font-weight: var(--font-weight-heading); }
+
+button,
+.ui-button,
+a[role="button"],
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: var(--border-style);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-2) var(--space-3);
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+button, .ui-button, a[role="button"] {
+  cursor: pointer;
+  min-height: var(--button-height);
+  width: fit-content;
+  max-width: 100%;
+  align-self: flex-start;
+  padding: 5px var(--space-3);
+  border: 1px solid var(--button-bg);
+  border-radius: 0;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  text-align: center;
+  white-space: normal;
+}
+
+.ui-button, a[role="button"] {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2); text-decoration: none; width: fit-content;
+}
+
+button:hover:not(:disabled), .ui-button:hover:not([aria-disabled="true"]), a[role="button"]:hover:not([aria-disabled="true"]) {
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-bg);
+}
+
+button:disabled, .ui-button[aria-disabled="true"], a[role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.danger:not(button):not(.ui-button):not([role="button"]) { color: var(--danger); }
+input:not([type="checkbox"]):not([type="radio"]), select, textarea { min-width: 0; min-height: var(--control-height); }
+/* Shared select styling retains native form, keyboard and validation behavior. */
+select {
+  appearance: none; -webkit-appearance: none;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 5px 36px;
+  text-align: center; text-align-last: center;
+  font-family: var(--font-family); font-size: var(--font-size-small);
+  line-height: var(--line-height-small); cursor: pointer;
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4.5 3 3 3-3' fill='none' stroke='%2362626A' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+}
+select:hover:not(:disabled) { border-color: var(--subtle); }
+select:disabled { cursor: not-allowed; opacity: .5; }
+select option { color: var(--fg); background: var(--surface); font: inherit; }
+/* Browsers supporting customizable selects also share the option-list design. */
+@supports (appearance: base-select) {
+  select, select::picker(select) { appearance: base-select; }
+  select {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    background-image: none; white-space: normal; overflow-wrap: anywhere;
+  }
+  select::picker-icon {
+    position: absolute; inset-inline-end: var(--space-3); top: 50%;
+    transform: translateY(-50%); color: var(--subtle); font-size: 10px;
+  }
+  select::picker(select) {
+    margin-block: var(--space-1); padding: var(--space-1);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); color: var(--fg); box-shadow: var(--shadow);
+    font-family: var(--font-family); font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    max-height: min(320px, 50dvh); overflow-y: auto; overscroll-behavior: contain;
+    scrollbar-width: thin; scrollbar-color: var(--dash) transparent;
+  }
+  select option {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    min-height: var(--control-height); padding: var(--space-2) 36px;
+    border: 0; border-radius: var(--radius);
+    white-space: normal; overflow-wrap: anywhere; text-align: center;
+  }
+  select option:hover, select option:focus-visible { background: var(--hover); outline-offset: -2px; }
+  select option:checked { background: #FFF0E6; color: var(--link-hover); font-weight: var(--font-weight-heading); }
+  select option::checkmark {
+    position: absolute; inset-inline-start: var(--space-3); top: 50%;
+    transform: translateY(-50%); color: var(--link-hover);
+  }
+  /* A required disabled prompt labels the closed control, not a selectable row. */
+  select option[value=""]:disabled { display: none; }
+}
+textarea { resize: vertical; }
+.field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.field label { overflow-wrap: anywhere; }
+.field input:not([type="checkbox"]):not([type="radio"]), .field select, .field textarea { width: 100%; }
+/* Inline forms share the app's solid input border and aligned control heights. */
+.ui-input { border: 1px solid var(--border); }
+.ui-form-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-3); }
+.ui-form-row .field > label { font-size: var(--font-size-small); line-height: var(--line-height-small); }
+.ui-form-row .ui-input, .ui-form-row > .ui-button { height: var(--control-height); min-height: var(--control-height); }
+.ui-form-row > .ui-button { align-self: end; }
+@media (max-width: 480px) {
+  .ui-form-row { grid-template-columns: minmax(0, 1fr); }
+  .ui-form-row > .ui-button { width: 100%; }
+}
+.field-hint, .subtle { color: var(--subtle); }
+.small { font-size: var(--font-size-small); line-height: var(--line-height-small); }
+.ui-status {
+  display: inline-flex; align-items: center; padding: 1px 8px;
+  border: 1px solid currentColor; border-radius: var(--radius);
+  font-size: var(--font-size-small); line-height: var(--line-height-small);
+  color: var(--subtle); background: var(--hover); white-space: nowrap;
+}
+.ui-status[data-tone="success"] { color: var(--success); background: var(--success-subtle); }
+.ui-status[data-tone="danger"] { color: var(--danger); background: var(--danger-subtle); }
+.ui-status[data-tone="warning"] { color: var(--warning); background: var(--warning-subtle); }
+.actions, .inline-links { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.notice:empty, :where([role="status"]):empty { display: none; }
+.notice[data-state="error"], :where([role="status"])[data-state="error"] {
+  color: var(--danger); border-left: 2px solid currentColor; padding-left: var(--space-3);
+}
+
+/* Shared data tables keep codes intact and scroll inside their own container. */
+.table-wrap, .benchmark-table { min-width: 0; max-width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; overflow-wrap: normal; word-break: normal; font-variant-numeric: tabular-nums; }
+th, td { padding: var(--space-3); text-align: left; vertical-align: top; border-bottom: var(--border-style); }
+th { font-weight: var(--font-weight-heading); }
+table code { white-space: nowrap; }
+
+summary { cursor: pointer; }
+.ui-disclosure, .billing-details, .benchmark-details { border-block: var(--border-style); padding-block: var(--space-4); }
+.ui-disclosure > summary, .billing-details > summary, .benchmark-details > summary { font-weight: var(--font-weight-heading); }
+.ui-disclosure > div { display: grid; gap: var(--space-3); padding-top: var(--space-4); }
+
+/* One frame treatment for marketing cards and benchmark tables. */
+.ui-frame, .price-card, .benchmark-table-frame { position: relative; min-width: 0; border: var(--border-style); background: var(--surface); }
+.ui-frame::before, .ui-frame::after, .price-card::before, .price-card::after, .benchmark-table-frame::before, .benchmark-table-frame::after,
+.ui-corners::before, .ui-corners::after, .box-corners::before, .box-corners::after, .benchmark-corners::before, .benchmark-corners::after {
+  content: "+"; position: absolute; width: 12px; height: 12px; background: var(--bg); color: var(--muted);
+  line-height: 12px; text-align: center; pointer-events: none; z-index: 1;
+}
+.ui-frame::before, .price-card::before, .benchmark-table-frame::before, .ui-corners::before, .box-corners::before, .benchmark-corners::before { left: -6px; }
+.ui-frame::after, .price-card::after, .benchmark-table-frame::after, .ui-corners::after, .box-corners::after, .benchmark-corners::after { right: -6px; }
+.ui-frame::before, .ui-frame::after, .price-card::before, .price-card::after, .benchmark-table-frame::before, .benchmark-table-frame::after { top: -6px; }
+.ui-corners::before, .ui-corners::after, .box-corners::before, .box-corners::after, .benchmark-corners::before, .benchmark-corners::after { bottom: -6px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin-block: var(--section-gap);
+  border: 0;
+  border-top: var(--border-style);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+}
+
+/* Shared modal layout. Only open dialogs participate in layout. */
+.ui-dialog {
+  width: min(500px, calc(100% - 32px)); max-width: none;
+  max-height: calc(100dvh - 32px); margin: auto; padding: 0;
+  overflow-y: auto; overscroll-behavior: contain;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); color: var(--fg); font: inherit;
+}
+.ui-dialog[open] { display: flex; flex-direction: column; }
+.ui-dialog::backdrop { background: rgba(7, 7, 7, .32); }
+.ui-dialog > * { min-width: 0; }
+.ui-dialog-header { display: grid; gap: var(--space-2); padding: var(--space-5); }
+.ui-dialog-header h2 { text-transform: none; }
+.ui-dialog-header h2::before { content: none; }
+.ui-dialog-body { display: flex; flex-direction: column; gap: var(--space-3); padding: 0 var(--space-5) var(--space-5); }
+.ui-dialog-actions {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2);
+  border-top: 1px solid var(--border); padding: var(--space-4) var(--space-5);
+}
+.ui-secret-preview, .ui-dialog .field input {
+  width: 100%; min-width: 0; min-height: var(--control-height);
+  padding: var(--space-2) var(--space-3); border: 1px solid var(--border);
+  background: var(--bg); font-size: var(--font-size-small);
+  white-space: nowrap; overflow-wrap: normal; word-break: normal;
+}
+.ui-secret-preview { display: flex; align-items: center; user-select: none; }
+.ui-secret-start { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ui-secret-end { flex: 0 0 auto; }
+@media (max-width: 480px) {
+  .ui-dialog-header { padding: var(--space-4); }
+  .ui-dialog-body { padding: 0 var(--space-4) var(--space-4); }
+  .ui-dialog-actions { padding: var(--space-3) var(--space-4); }
+}
+
+.panel {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: var(--border-style);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* The guide does not specify a breakpoint; 768px starts desktop padding. */
+@media (min-width: 768px) {
+  :root {
+    --page-padding: var(--page-x-desktop);
+  }
+}
+
+@media (max-width: 760px) {
+  /* Keep editable text fields readable without changing compact selector typography. */
+  input:not([type="checkbox"]):not([type="radio"]), textarea { font-size: 16px; }
+  /* Keep the existing native fallback list size; only the closed value is smaller. */
+  @supports not (appearance: base-select) { select option { font-size: 16px; } }
+  :where(.auth-page, .dashboard-main, .paid-onboarding-main, .ui-dialog) :is(button, .ui-button) { min-height: 40px; }
+  .table-wrap { -webkit-overflow-scrolling: touch; overscroll-behavior-inline: contain; }
+}

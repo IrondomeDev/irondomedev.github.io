@@ -1,0 +1,122 @@
+/* Shared wordmark strip and navigation for public pages. */
+.site-mobile-menu { display: none; }
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.site-nav a {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  background: transparent;
+}
+
+.site-nav a span {
+  padding: var(--link-highlight-block) var(--link-highlight-inline);
+  margin: calc(0px - var(--link-highlight-block)) calc(0px - var(--link-highlight-inline));
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.site-nav a:hover span {
+  background: var(--hover, #EEEEEF);
+}
+
+.site-brand {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #070707;
+}
+
+.site-brand-word {
+  display: grid;
+  place-items: center;
+  flex: 0 0 clamp(120px, 28.8%, 144px);
+  background: #070707;
+  text-decoration: none;
+  border-right: 1px solid #070707;
+  font-family: var(--font-family, inherit);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-indent: .1em;
+  line-height: 1;
+}
+
+.site-brand-word:hover {
+  background: #070707;
+}
+
+.site-brand-word:focus-visible {
+  outline-offset: -3px;
+}
+
+.site-brand-spectrum {
+  flex: 1;
+  min-width: 0;
+  /* Twenty-one hard-edged bands preserve the three brand colour anchors. */
+  background: linear-gradient(90deg,
+    #F5D90A 0% 2.5%,
+    #F5CE0A 2.5% 7.5%,
+    #F5C20A 7.5% 12.5%,
+    #F6B70A 12.5% 17.5%,
+    #F6AC09 17.5% 22.5%,
+    #F6A109 22.5% 27.5%,
+    #F69509 27.5% 32.5%,
+    #F78A09 32.5% 37.5%,
+    #F77F08 37.5% 42.5%,
+    #F77308 42.5% 47.5%,
+    #F76808 47.5% 52.5%,
+    #F75F08 52.5% 57.5%,
+    #F75508 57.5% 62.5%,
+    #F74C08 62.5% 67.5%,
+    #F74208 67.5% 72.5%,
+    #F73909 72.5% 77.5%,
+    #F72F09 77.5% 82.5%,
+    #F72609 82.5% 87.5%,
+    #F71C09 87.5% 92.5%,
+    #F71309 92.5% 97.5%,
+    #F70909 97.5% 100%);
+}
+
+@media (max-width: 760px) {
+  .site-header { position: relative; gap: 12px; }
+  .site-header > .site-nav { display: none; }
+  .site-mobile-menu { display: block; align-self: flex-end; }
+  .site-mobile-menu > summary { display: flex; align-items: center; justify-content: center; min-height: 44px; min-width: 88px; padding: 8px 16px; border: 1px solid var(--accent); background: var(--accent); color: white; cursor: pointer; list-style: none; font-size: 12px; line-height: 20px; }
+  .site-mobile-menu > summary::-webkit-details-marker { display: none; }
+  .site-mobile-menu > summary::after { content: '+'; margin-left: 16px; }
+  .site-mobile-menu[open] > summary::after { content: '−'; }
+  .site-mobile-menu > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .site-mobile-menu .mobile-menu-panel { position: absolute; inset: 100% 0 auto; z-index: 50; display: grid; max-height: min(65svh, 480px); overflow-y: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid var(--border, #ddd); background: var(--bg, #F7F7F8); scrollbar-color: var(--dash) transparent; }
+  .mobile-menu-panel a { display: flex; align-items: center; min-height: 44px; padding: 10px 12px; margin: 0; text-decoration: none; color: var(--fg); }
+  .mobile-menu-panel a:hover, .mobile-menu-panel a:focus-visible { background: var(--selected-bg, #FFF0E6); color: var(--accent); }
+  .site-header[data-direct-navigation] > .site-nav {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: space-between;
+    gap: 4px;
+    font-size: clamp(9px, 2.8vw, 12px);
+  }
+  .site-header[data-direct-navigation] .site-nav > a { display: flex; align-items: center; min-height: 40px; }
+  .site-header[data-direct-navigation] .site-nav > a:nth-child(4) { justify-self: end; }
+  .site-header[data-direct-navigation] .site-nav > a:nth-child(5) { grid-column: 1; grid-row: 2; }
+  .site-header[data-direct-navigation] .site-nav > a:nth-child(6) { grid-column: 4; grid-row: 2; justify-self: end; }
+  .site-header[data-direct-navigation] .site-mobile-menu { display: none; }
+}

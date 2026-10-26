@@ -10,7 +10,7 @@ Product documentation, API reference, and articles remain canonical at https://i
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080. No framework, bundler, analytics, third-party fonts, or JavaScript is required by the website. Typography uses the viewer's system monospace fonts; no commercial font binary is redistributed.
+Open http://localhost:8080. The website reuses IronDome’s shared theme, public header, landing-page layout, and footer styles. No framework, bundler, analytics, or JavaScript is required. The existing IronDome hashed WOFF2 webfont is reused unchanged at its original asset path. No font package, new license grant, or license-clearance claim is included.
 
 ## Test the example
 
@@ -20,6 +20,6 @@ See [examples/node-signup/README.md](examples/node-signup/README.md). The demo/t
 
 GitHub Pages: **Deploy from a branch → main → / (root)**. The `.nojekyll` file disables Jekyll processing. GitHub still runs its managed Pages deployment workflow. There is no custom build pipeline.
 
-Before publishing, verify external destinations, review every tracked file for secrets, run the example tests/demo, and inspect desktop/mobile layout. Do not commit API keys, `.env` files, `node_modules`, or proprietary font files.
+Before publishing, verify external destinations, review every tracked file for secrets, run the example tests/demo, and inspect desktop/mobile layout. Do not commit API keys, `.env` files, `node_modules`, or additional font packages.
 
 GitHub documentation: [Create a Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) · [Configure publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
