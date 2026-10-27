@@ -4,6 +4,13 @@ Static source for https://irondomedev.github.io/ — SDK installation links, Mai
 
 Product documentation, API reference, and articles remain canonical at https://irondome.dev/. This hub does not duplicate the product site or blog.
 
+## Signup screening tutorial
+
+[Block disposable email signups in Node.js](https://irondome.dev/blogs/block-disposable-email-signups-nodejs)
+explains where to put server-side screening, how to handle API failures, and how
+to test account-creation and verification-email side effects. Run the companion
+[offline example and tests](examples/node-signup/README.md) without an API key.
+
 ## Preview
 
 ```sh

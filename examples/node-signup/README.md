@@ -5,6 +5,9 @@ uses the published, unchanged `@irondome-dev/sdk@0.2.0` API. The offline demo an
 tests need no API key and make no live requests, create no accounts, and send no
 verification emails.
 
+Read the companion tutorial: [Block disposable email signups in Node.js](https://irondome.dev/blogs/block-disposable-email-signups-nodejs).
+It explains the signup boundary and walks through the implementation and tests below.
+
 ## Run
 
 Requires Node.js 22 or newer. Verified locally with Node.js 24.22.1 and npm 11.9.0.
